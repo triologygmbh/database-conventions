@@ -265,7 +265,7 @@ Auditing-Spalten sind i.d.R. vom Typ Date.
 |:---|:---|:---|
 | Primary Key Constraint | \<TabellenKürzel\>_PK | emp_pk|
 | Unique Constraint | \<TabellenKürzel\>_\<Qualifikation\>_UK | emp_username_uk |
-| Foreign Key Constraint | \<TabellenKürzel\>_\<TabellenKürzel\>_FK,<br />\<TabellenKürzel\>_\<TabellenKürzel\>_\<Qualifikation\>_FK| emp_dep_fk |
+| Foreign Key Constraint | \<TabellenKürzel\> _\<TabellenKürzel\> _FK,<br />\<TabellenKürzel\> _\<TabellenKürzel\> _\<Qualifikation\> _FK| emp_dep_fk |
 | Check Constraint | \<TabellenKürzel\>_\<Qualifikation\>_CK | emp_manager_ck,<br />_... constraint emp_manager_ck check (manager in (0,1))<br />Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
 | Not Null Constraint | - (kein Name notwendig) | |
 
