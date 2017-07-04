@@ -2,11 +2,6 @@
 
 ## Zweck
 
-1. test
-    1. testetst
-    1. testetst
-    1. testetst
-1. testetst
 
 ## Übersetzungen
 
@@ -19,7 +14,14 @@
   1. [Projektpräfix](#projektpräfix)
   1. [Tabellenkürzel](#tabellenkürzel)
   1. [Spaltenkürzel](#spaltenkürzel)
-  1. [Namenskonventionen](#namenskonventionen)
+  1. [Generelle Namenskonventionen](#generelle-namenskonventionen)
+  1. [Tabellen](#tabellen)
+  1. [Views](#views)
+  1. [Trigger](#trigger)
+  1. [Sequenzen](#sequenzen)
+  1. [Spalten](#spalten)
+  1. [Constraints](#constraints)
+  1. [Indizes](#indizes)
 ## Sprache
 ###### [Regel [R001](#regel-r001)]
 
@@ -70,7 +72,7 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-## Namenskonventionen
+## Generelle Namenskonventionen
 ###### [Regel [R005](#regel-r005)]
 
 Alle Namen bestehen nur aus den Buchstaben 'A'-'Z', den Zahlen '0'-'9', sowie dem Unterstrich '_'.
@@ -80,7 +82,7 @@ Objecte sind immer case-insensitiv anzulegen.
 Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Tabellen
+## Tabellen
 ###### [Regel [R006](#regel-r006)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -92,7 +94,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Views
+## Views
 ###### [Regel [R007](#regel-r007)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -101,7 +103,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Trigger
+## Trigger
 ###### [Regel [R008](#regel-r008)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -112,7 +114,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Sequenzen
+## Sequenzen
 ###### [Regel [R009](#regel-r009)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -120,7 +122,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Sequenz | <TabellenKürzel>_SEQ | emp_seq,<br />_Für Spalte id der Tabelle mit dem betreffenden \<TabellenKürzel\>._ |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Spalten
+## Spalten
 ###### [Regel [R010](#regel-r010)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -133,7 +135,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Constraints
+## Constraints
 ###### [Regel [R011](#regel-r011)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -145,7 +147,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Not Null Constraint | - (kein Name notwendig) | |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### Indizes
+## Indizes
 ###### [Regel [R012](#regel-r012)]
 
 | Objekt-Typ | Regel | Beispiel |
