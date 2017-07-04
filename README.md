@@ -17,15 +17,15 @@
   1. [Spaltenkürzel](#topic4)
   1. [Namenskonventionen](#topic5)
 ## Sprache
-###### [Regel [R001](#rule-r001)]
+###### [Regel [R001](#regel-r001)]
 
 Als Sprache für die Benennung der Schema-Objekte ist Englisch zu wählen.
 
 Die Sprache für Quelltext- und Dokumentationskommentare kann unabhängig gewählt werden.
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ## Projektpräfix
-###### [Regel [R002](#rule-r002)]
+###### [Regel [R002](#regel-r002)]
 
 Es _kann_ ein Projektpräfix vereinbart werden.
 Diese Präfixe werden, gefolgt von einem Unterstrich '_', jedem Tabellen- oder Viewnamen vorangestellt.
@@ -35,9 +35,9 @@ _Warum?_ Projektpräfixe sind sinnvoll, um die Verwendung von Tabellen oder View
 eingebettetem SQL oder im Quelltext verteilten SQL (JDBC). Alternativ kann mitunter konsequent das Schema verwendet werden.
 
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ## Tabellenkürzel
-###### [Regel [R003](#rule-r003)]
+###### [Regel [R003](#regel-r003)]
 
 Für jede Tabelle _muss_ ein eindeutiges Tabellenkürzel vereinbart werden.
 Alle Tabellenkürzel und Tabellennamen sind innerhalb ihres Schemas eindeutig.
@@ -51,9 +51,9 @@ Dieses Tabellenkürzel _muss_ in den Kommentar zur Tabelle wie folgt aufgenommen
 _Warum?_ Dies ermöglicht unter Anderem die automatische Zuordnung einer Sequenz zu einer Tabelle.
 
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ## Spaltenkürzel
-###### [Regel [R004](#rule-r004)]
+###### [Regel [R004](#regel-r004)]
 
 
 Für jede Spalte _kann_ ein eindeutiges Spaltenkürzel vereinbart werden.
@@ -65,35 +65,35 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
   ```
 
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ## Namenskonventionen
 
 ### Tabellen
-###### [Regel [R005](#rule-r005)]
+###### [Regel [R005](#regel-r005)]
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ### Views
-###### [Regel [R006](#rule-r006)]
+###### [Regel [R006](#regel-r006)]
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ### Trigger
-###### [Regel [R007](#rule-r007)]
+###### [Regel [R007](#regel-r007)]
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ### Sequenzen
-###### [Regel [R008](#rule-r008)]
+###### [Regel [R008](#regel-r008)]
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ### Spalten
-###### [Regel [R009](#rule-r009)]
+###### [Regel [R009](#regel-r009)]
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ### Constraints
-###### [Regel [R010](#rule-r010)]
+###### [Regel [R010](#regel-r010)]
 
-**[Zurück nach oben](#table-of-contents)**
+**[Zurück nach oben](#inhaltsverzeichnis)**
 ### Indizes
-###### [Regel [R011](#rule-r011)]
+###### [Regel [R011](#regel-r011)]
 
 
 
