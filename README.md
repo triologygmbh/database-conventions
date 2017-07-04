@@ -71,6 +71,24 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
 ### Tabellen
 ###### [Regel [R005](#regel-r005)]
 
+- Normale Tabellen
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| Tabellen | <FachlicherName> | employee |
+| Journal-Tabellen | <FachlicherName>_JN | employee_jn, __Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals.__ |
+| Logging-Tabellen | <FachlicherName>_LOG | import_log |
+| DML-Error-Logging-Tabellen | <FachlicherName>_ERR| debitor_err, __Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements.__ |
+
+
+
+
+
+
+
+
+
+
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Views
 ###### [Regel [R006](#regel-r006)]
