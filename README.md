@@ -22,6 +22,7 @@
   1. [Spalten](#spalten)
   1. [Constraints](#constraints)
   1. [Indizes](#indizes)
+  1. [Nicht aufgeführte Objekt-Typen](#nicht-aufgeführte-objekt-typen)
 ## Sprache
 ###### [Regel [R001](#regel-r001)]
 
@@ -115,6 +116,10 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Sequenzen
+
+Dieser Abschnitt gilt für Sequenzen, die zur Befüllung der technischen Schlüsselspalte dienen.
+Weitere Sequenzen sind prinzipiell erlaubt, aufgrund ihrer Seltenheit hier jedoch nicht erfasst.
+
 ###### [Regel [R009](#regel-r009)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -122,8 +127,30 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Sequenz | <TabellenKürzel>_SEQ | emp_seq,<br />_Für Spalte id der Tabelle mit dem betreffenden \<TabellenKürzel\>._ |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-## Spalten
 ###### [Regel [R010](#regel-r010)]
+
+Sequenzen starten immer bei 1.
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+###### [Regel [R011](#regel-r011)]
+
+Tabellen, die über bulk-inserts befüllt werden, dürfen cachende Sequenzen verwenden.
+
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+###### [Regel [R012](#regel-r012)]
+
+Beispiel:
+
+  ```sql
+  create sequence emp_seq nocycle nocache maxvalue 999999999999999999 minvalue 0 start with 1;
+  ```
+
+
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+## Spalten
+###### [Regel [R013](#regel-r013)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -136,7 +163,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Constraints
-###### [Regel [R011](#regel-r011)]
+###### [Regel [R014](#regel-r014)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -148,7 +175,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Indizes
-###### [Regel [R012](#regel-r012)]
+###### [Regel [R015](#regel-r015)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -157,4 +184,40 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 
 
+**[Zurück nach oben](#inhaltsverzeichnis)**
+## Nicht aufgeführte Objekt-Typen
+
+### Synonyme
+
+Synonyme sind im einem Applikationsschema verboten.
+Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift.
+Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung.
+
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Öffentliche Synonyme
+
+Öffentliche Synonyme sind verboten.
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### DBMS Jobs/Scheduler Jobs
+
+DBMS Jobs sind verboten.
+Es sind Scheduler Jobs zu verwenden.
+Diese sind noch nicht Teil dieses Dokumentes.
+Es sind nur Scheduler Jobs mit dem Job-Typ "STORED_PROCEDURE" erlaubt.
+
+_Warum?_ für eine stored procedure ist sichergestellt, dass diese kompiliert. Das gilt nicht für Anonyme PL/SQL-Blöcke.
+
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Advanced Queueing
+
+Erlaubt, aber noch nicht Teil dieses Dokumentes.
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Functions, Procedures, Packages und Package Bodies
+
+Erlaubt, aber noch nicht Teil dieses Dokumentes.
+Functions und Procedures _sollten_ bevorzugt in Packages abgelegt werden.
 
