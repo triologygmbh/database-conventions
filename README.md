@@ -266,10 +266,19 @@ Auditing-Spalten sind i.d.R. vom Typ Date.
 | Primary Key Constraint | \<TabellenKürzel\>_PK | emp_pk|
 | Unique Constraint | \<TabellenKürzel\>_\<Qualifikation\>_UK | emp_username_uk |
 | Foreign Key Constraint | \<TabellenKürzel\>_\<TabellenKürzel\>_FK,<br />\<TabellenKürzel\>_\<TabellenKürzel\>_\<Qualifikation\>_FK| emp_dep_fk |
-| Check Constraint | <TabellenKürzel>_<Qualifikation>_CK | emp_manager_ck |
+| Check Constraint | \<TabellenKürzel\>_\<Qualifikation\>_CK | emp_manager_ck,<br />_... constraint emp_manager_ck check (manager in (0,1))<br />Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt |
 | Not Null Constraint | - (kein Name notwendig) | |
 
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Check Constraint
 ###### [Regel [R031](#regel-r031)]
+
+
+Check 
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Not Null Constraints
+###### [Regel [R032](#regel-r032)]
 
 Not Null constraints werden nicht namentlich ausgewiesen, da:
 
@@ -284,7 +293,7 @@ Not Null constraints werden nicht namentlich ausgewiesen, da:
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Indizes
-###### [Regel [R032](#regel-r032)]
+###### [Regel [R033](#regel-r033)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
