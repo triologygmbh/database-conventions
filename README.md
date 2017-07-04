@@ -11,11 +11,11 @@
 
 
 
-  1. [Sprache](#topic1)
-  1. [Projektpräfix](#topic2)
-  1. [Tabellenkürzel](#topic3)
-  1. [Spaltenkürzel](#topic4)
-  1. [Namenskonventionen](#topic5)
+  1. [Sprache](#sprache)
+  1. [Projektpräfix](#projektpräfix)
+  1. [Tabellenkürzel](#tabellenkürzel)
+  1. [Spaltenkürzel](#spaltenkürzel)
+  1. [Namenskonventionen](#namenskonventionen)
 ## Sprache
 ###### [Regel [R001](#regel-r001)]
 
