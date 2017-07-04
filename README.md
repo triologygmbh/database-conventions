@@ -1,13 +1,10 @@
+
+
+
 # DB Namenskonventionen
-
-## Zweck
-
-
-## Übersetzungen
 
 
 ## Inhaltsverzeichnis
-
 
 
   1. [Sprache](#sprache)
