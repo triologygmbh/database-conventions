@@ -1,39 +1,38 @@
-# Database Naming Conventions
+# DB Namenskonventionen
 
-## Purpose
-
-
-## Translations
+## Zweck
 
 
-## Table of Contents
 
-  1. [Language](#topic1)
-  1. [Project Prefix](#topic2)
+## Übersetzungen
+
+
+## Inhaltsverzeichnis
+
+  1. [Sprache](#topic1)
+  1. [Projektpräfix](#topic2)
   1. [Abbreviated Table Name](#topic3)
   1. [Further Documentation](#topic4)
   1. [Abbreviated Column Name](#topic5)
-## Language
+## Sprache
 ###### [Rule [R001](#rule-r001)]
 
+Als Sprache für die Benennung der Schema-Objekte ist Englisch zu wählen.
+
+Die Sprache für Quelltext- und Dokumentationskommentare kann unabhängig gewählt werden.
 
 **[Back to top](#table-of-contents)**
-## Project Prefix
-### SubTopic A
+## Projektpräfix
 ###### [Rule [R002](#rule-r002)]
 
+Es kann ein Projektpräfix vereinbart werden.
+Diese Präfixe werden, gefolgt von einem Unterstrich '_', jedem Tabellen- oder Viewnamen vorangestellt.
+Ein Präfix besteht aus maximal 3 alphanumerischen Zeichen, beginnend mit einem Buchstaben.
 
-  - Blah...
-
-  ```sql
-  blubber
-  ```
+_Warum?_ Projektpräfixe sind sinnvoll, um die Verwendung von Tabellen oder Views im Applikationsquelltext identifizieren zu können, insbesondere bei Nutzung von
+eingebettetem SQL oder im Quelltext verteilten SQL (JDBC). Alternativ kann mitunter konsequent das Schema verwendet werden.
 
 
-
-**[Back to top](#table-of-contents)**
-### SubTopic B
-###### [Rule [R003](#rule-r003)]
 
 
   - Lorem ipsum dolor sit amet
@@ -46,7 +45,7 @@
 **[Back to top](#table-of-contents)**
 ## Abbreviated Table Name
 ### SubTopic 3
-###### [Rule [R004](#rule-r004)]
+###### [Rule [R003](#rule-r003)]
 
 
   Noch'n blindtext...
