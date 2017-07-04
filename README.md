@@ -67,11 +67,17 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Namenskonventionen
-
-### Tabellen
 ###### [Regel [R005](#regel-r005)]
 
-- Normale Tabellen
+Alle Namen bestehen nur aus den Buchstaben 'A'-'Z', den Zahlen '0'-'9', sowie dem Unterstrich '_'.
+Alle Namen beginnen mit einem Buchstaben.
+Alle Namen sind höchstens 30 Zeichen lang.
+Objecte sind immer case-insensitiv anzulegen.
+Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Tabellen
+###### [Regel [R006](#regel-r006)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -81,37 +87,67 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
 | DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
 
 
-
-
-
-
-
-
-
-
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Views
-###### [Regel [R006](#regel-r006)]
+###### [Regel [R007](#regel-r007)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| View | \<FachlicherName\>_V | employee_v,<br />_\<FachlicherName\> darf ebenso ein Tabellenname sein, muss aber nicht._ |
+
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Trigger
-###### [Regel [R007](#regel-r007)]
+###### [Regel [R008](#regel-r008)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| Sequenz-Trigger | \<TabellenKürzel\>_SEQ_TG | emp_seq_tg |
+| Journalling-Trigger | \<TabellenKürzel\>_JN_TG | emp_jn_tg |
+| Auditing-Trigger | \<TabellenKürzel\>_AUD_TG | emp_aud_tg |
+
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Sequenzen
-###### [Regel [R008](#regel-r008)]
+###### [Regel [R009](#regel-r009)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| Sequenz | <TabellenKürzel>_SEQ | emp_seq,<br />_Für Spalte id der Tabelle mit dem betreffenden \<TabellenKürzel\>._ |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Spalten
-###### [Regel [R009](#regel-r009)]
+###### [Regel [R010](#regel-r010)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| Technische Schlüsselspalte | id | employee.id |
+| Fremdschlüsselspalte | \<TabellenKürzel\>_id,<br />\<TabellenKürzel\>_\<Qualifikation\>_id | employee.dep_id<br />_\<TabellenKürzel\> der referenzierten Tabelle<br />\<Qualifikation\> bei mehreren Referenzen._ |
+| Auditing-Spalte,<br />Erstellungsdatum | created_date | employee.created_date |
+| Auditing-Spalte,<br />Änderungsdatum | modified_date | employee.modified_date |
+| Weitere Spalten | nicht 'id', enden nicht auf '_id', keine Auditing-Spalte | employee.last_name |
+
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Constraints
-###### [Regel [R010](#regel-r010)]
+###### [Regel [R011](#regel-r011)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| Primary Key Constraint | \<TabellenKürzel\>_PK | emp_pk|
+| Unique Constraint | \<TabellenKürzel\>_\<Qualifikation\>_UK | emp_username_uk |
+| Foreign Key Constraint | \<TabellenKürzel\>_\<TabellenKürzel\>_FK,<br />\<TabellenKürzel\>_\<TabellenKürzel\>_\<Qualifikation\>_FK| emp_dep_fk |
+| Check Constraint | <TabellenKürzel>_<Qualifikation>_CK | emp_manager_ck |
+| Not Null Constraint | - (kein Name notwendig) | |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Indizes
-###### [Regel [R011](#regel-r011)]
+###### [Regel [R012](#regel-r012)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:---|:---|:---|
+| Index | \<TabellenKürzel\>_\<Qualifikation\>_IX | emp_id_ix |
+
 
 
 
