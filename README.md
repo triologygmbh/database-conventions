@@ -189,6 +189,7 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Spalten
+
 ###### [Regel [R020](#regel-r020)]
 
 | Objekt-Typ | Regel | Beispiel |
@@ -199,10 +200,66 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 | Auditing-Spalte,<br />Änderungsdatum | modified_date | employee.modified_date |
 | Weitere Spalten | nicht 'id', enden nicht auf '_id', keine Auditing-Spalte | employee.last_name |
 
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Technischer Schlüssel
+###### [Regel [R021](#regel-r021)]
+
+Jede Tabelle verfügt über einen technischen Primärschlüssel.
+Die Tabelle wird ausschliesslich über diesen Primärschlüssel referenziert.
+
+_Warum?_ Fachliche Schlüssel, die sich durchaus ändern können, sind von der Aufgabe der referentiellen Integrität entkoppelt.
+
+###### [Regel [R022](#regel-r022)]
+
+Die technische Schlüsselspalte heisst immer id.
+Joins sind somit immer über die id-Spalte aufzubauen, nicht über fachliche Schlüssel, die sich ändern können.
+
+###### [Regel [R023](#regel-r023)]
+Die technische Schlüsselspalte ist nicht nullable.
+
+_Warum?_ Datensätze sind so immer referenzierbar.
+
+###### [Regel [R024](#regel-r024)]
+Die technische Schlüsselspalte ist vom Typ NUMBER(18,0)
+
+  ```
+  999.999.999.999.999.999 bedeutet:
+  999.999 Tage jeweils 999 Milliarden Einträge erstellt.
+  999.999 Tage entsprechen ca. 2738 Jahren
+  ```
+
+_Warum?_ Damit passt die id bequem in gängige Datentypen, 64bit signed integer (Java: long, C: int64_t/signed long long).
+
+###### [Regel [R025](#regel-r025)]
+
+Für Oracle 11g: Die technische Schlüsselspalte wird immer von einer Sequenz befüllt.
+Dies passiert bevorzugt in einer Zugriffsschicht.
+
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+### Auditing-Spalten
+###### [Regel [R026](#regel-r026)]
+
+Auditing-Spalten sind für alle Tabellen verbindlich.
+
+###### [Regel [R027](#regel-r027)]
+
+Die Auditing-Spalten sind, wenn vorhanden, verbindlich zu pflegen.
+
+###### [Regel [R028](#regel-r028)]
+
+Auditing-Spalten sind nicht nullable, d.h. die Erstanlage zählt als Modifikation.
+
+###### [Regel [R029](#regel-r029)]
+
+Auditing-Spalten sind i.d.R. vom Typ Date.
+
+
+
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Constraints
-###### [Regel [R021](#regel-r021)]
+###### [Regel [R030](#regel-r030)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -212,13 +269,23 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 | Check Constraint | <TabellenKürzel>_<Qualifikation>_CK | emp_manager_ck |
 | Not Null Constraint | - (kein Name notwendig) | |
 
+
+
+
+
+
+
+
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Indizes
-###### [Regel [R022](#regel-r022)]
+###### [Regel [R031](#regel-r031)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Index | \<TabellenKürzel\>_\<Qualifikation\>_IX | emp_id_ix |
+
+
+
 
 
 
