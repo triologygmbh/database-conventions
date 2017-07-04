@@ -126,18 +126,15 @@ Weitere Sequenzen sind prinzipiell erlaubt, aufgrund ihrer Seltenheit hier jedoc
 |:---|:---|:---|
 | Sequenz | <TabellenKürzel>_SEQ | emp_seq,<br />_Für Spalte id der Tabelle mit dem betreffenden \<TabellenKürzel\>._ |
 
-**[Zurück nach oben](#inhaltsverzeichnis)**
 ###### [Regel [R010](#regel-r010)]
 
 Sequenzen starten immer bei 1.
 
-**[Zurück nach oben](#inhaltsverzeichnis)**
 ###### [Regel [R011](#regel-r011)]
 
 Tabellen, die über bulk-inserts befüllt werden, dürfen cachende Sequenzen verwenden.
 
 
-**[Zurück nach oben](#inhaltsverzeichnis)**
 ###### [Regel [R012](#regel-r012)]
 
 Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der Tabelle mit dem Kürzel _emp_:
