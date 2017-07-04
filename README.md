@@ -269,20 +269,26 @@ Auditing-Spalten sind i.d.R. vom Typ Date.
 | Check Constraint | <TabellenKürzel>_<Qualifikation>_CK | emp_manager_ck |
 | Not Null Constraint | - (kein Name notwendig) | |
 
+###### [Regel [R031](#regel-r031)]
 
+Not Null constraints werden nicht namentlich ausgewiesen, da:
 
+1. änderbar via
 
+   ```sql
+   alter table ... modifiy ... [not] null;
+   ```
 
-
+1. Weiterhin liefert die Fehlermeldung zur Constraint-Verletzung (ORA-01400) ausreichend Kontext um das Problem zu identifizieren.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Indizes
-###### [Regel [R031](#regel-r031)]
+###### [Regel [R032](#regel-r032)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
-| Index | \<TabellenKürzel\>_\<Qualifikation\>_IX | emp_id_ix |
+| Index | \<TabellenKürzel\>_\<Qualifikation\>_IX | emp_id_ix,<br />Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt |
 
 
 
