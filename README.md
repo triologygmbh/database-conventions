@@ -76,9 +76,9 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Tabellen | \<FachlicherName\> | employee |
-| Journal-Tabellen | \<FachlicherName\>_JN | employee_jn, _Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals._ |
+| Journal-Tabellen | \<FachlicherName\>_JN | employee_jn,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals._ |
 | Logging-Tabellen | \<FachlicherName\>_LOG | import_log |
-| DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err, _Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
+| DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
 
 
 
