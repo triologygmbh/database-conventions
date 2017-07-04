@@ -140,7 +140,7 @@ Tabellen, die über bulk-inserts befüllt werden, dürfen cachende Sequenzen ver
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ###### [Regel [R012](#regel-r012)]
 
-Beispiel:
+Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der Tabelle mit dem Kürzel _emp_:
 
   ```sql
   create sequence emp_seq nocycle nocache maxvalue 999999999999999999 minvalue 0 start with 1;
@@ -184,15 +184,18 @@ Beispiel:
 
 
 
+
+
+
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Nicht aufgeführte Objekt-Typen
-
 ### Synonyme
 
 Synonyme sind im einem Applikationsschema verboten.
-Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift.
-Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung.
 
+Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift.
+
+Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung.
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Öffentliche Synonyme
@@ -203,12 +206,14 @@ Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept
 ### DBMS Jobs/Scheduler Jobs
 
 DBMS Jobs sind verboten.
+
 Es sind Scheduler Jobs zu verwenden.
+
 Diese sind noch nicht Teil dieses Dokumentes.
+
 Es sind nur Scheduler Jobs mit dem Job-Typ "STORED_PROCEDURE" erlaubt.
 
 _Warum?_ für eine stored procedure ist sichergestellt, dass diese kompiliert. Das gilt nicht für Anonyme PL/SQL-Blöcke.
-
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Advanced Queueing
@@ -219,5 +224,6 @@ Erlaubt, aber noch nicht Teil dieses Dokumentes.
 ### Functions, Procedures, Packages und Package Bodies
 
 Erlaubt, aber noch nicht Teil dieses Dokumentes.
+
 Functions und Procedures _sollten_ bevorzugt in Packages abgelegt werden.
 
