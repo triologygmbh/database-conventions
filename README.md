@@ -103,15 +103,57 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | View | \<FachlicherName\>_V | employee_v,<br />_\<FachlicherName\> darf ebenso ein Tabellenname sein, muss aber nicht._ |
 
 
+###### [Regel [R008](#regel-r008)]
+
+Views werden nicht geschachtelt.
+
+_Warum?_ ineinander geschachtelte Views führen früher oder später zu Performance-Problemen.
+
+###### [Regel [R009](#regel-r009)]
+
+Views sind als Teil einer Zugriffsschicht verboten.
+
+###### [Regel [R010](#regel-r010)]
+
+Views sind erlaubt:
+- als Hilfsmittel/Komfort für Entwickler oder DBA.
+- zum Verbergen von Komplexität vor Fremdsystemen.
+
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Trigger
-###### [Regel [R008](#regel-r008)]
+
+Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
+- Sequenz-Trigger dienen der Befüllung der Technischen Schlüsselspalte id (before row insert).
+- Auditing-Trigger dienen der Befüllung der Auditing-Spalten (before row insert/update).
+- Journalling-Trigger dienen der Befüllung von Journal-Tabellen (after row insert/update/delete).
+
+###### [Regel [R011](#regel-r011)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Sequenz-Trigger | \<TabellenKürzel\>_SEQ_TG | emp_seq_tg |
 | Journalling-Trigger | \<TabellenKürzel\>_JN_TG | emp_jn_tg |
 | Auditing-Trigger | \<TabellenKürzel\>_AUD_TG | emp_aud_tg |
+
+###### [Regel [R012](#regel-r012)]
+
+Die Erstellung weiterer Trigger ist verboten.
+
+###### [Regel [R013](#regel-r013)]
+
+Als Alternative zu Triggern is eine geeignete Zugriffsschicht zu implementieren.
+
+###### [Regel [R014](#regel-r014)]
+
+Alles-oder-Nichts-Prinzip:
+
+- Wenn es eine Technische Schlüsselspalte gibt, die aus einem Sequenz-Trigger befüllt wird, dann gilt dies für alle Technischen Schlüsselspalten.
+- Wenn es einen Auditing-Trigger gibt, der Auditing-Spalten befüllt, so werden alle Auditing-Spalten über einen Auditing-Trigger befüllt.
+- Wenn es eine Journal-Tabelle gibt, die über einen Journalling-Trigger befüllt wird, dann gilt dies für alle Journal-Tabellen.
+
+###### [Regel [R015](#regel-r015)]
+
+Sämtliche Trigger sind automatisiert, z.B. aus einem Template zu erstellen.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
@@ -120,22 +162,22 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 Dieser Abschnitt gilt für Sequenzen, die zur Befüllung der technischen Schlüsselspalte dienen.
 Weitere Sequenzen sind prinzipiell erlaubt, aufgrund ihrer Seltenheit hier jedoch nicht erfasst.
 
-###### [Regel [R009](#regel-r009)]
+###### [Regel [R016](#regel-r016)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Sequenz | <TabellenKürzel>_SEQ | emp_seq,<br />_Für Spalte id der Tabelle mit dem betreffenden \<TabellenKürzel\>._ |
 
-###### [Regel [R010](#regel-r010)]
+###### [Regel [R017](#regel-r017)]
 
 Sequenzen starten immer bei 1.
 
-###### [Regel [R011](#regel-r011)]
+###### [Regel [R018](#regel-r018)]
 
 Tabellen, die über bulk-inserts befüllt werden, dürfen cachende Sequenzen verwenden.
 
 
-###### [Regel [R012](#regel-r012)]
+###### [Regel [R019](#regel-r019)]
 
 Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der Tabelle mit dem Kürzel _emp_:
 
@@ -147,7 +189,7 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Spalten
-###### [Regel [R013](#regel-r013)]
+###### [Regel [R020](#regel-r020)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -160,7 +202,7 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Constraints
-###### [Regel [R014](#regel-r014)]
+###### [Regel [R021](#regel-r021)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -172,7 +214,7 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Indizes
-###### [Regel [R015](#regel-r015)]
+###### [Regel [R022](#regel-r022)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
