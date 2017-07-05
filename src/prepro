@@ -1,0 +1,51 @@
+#!/usr/bin/env lua5.3
+--[[
+
+a simple preprocessor.
+
+]]
+
+
+
+function incl(file)
+   for line in io.lines(file) do
+      io.write(line .. "\n")
+   end
+end
+
+function prep(file, line_match)
+   if (line_match == nil) then
+      line_match = "#"
+   end
+   local chunk = { n = 0 }
+   for line in io.lines(file) do
+      if string.find(line, "^" .. line_match) then
+         -- need to adjust the 2
+         table.insert(chunk, string.sub(line, 1+string.len(line_match)) .. "\n")
+      else
+         local last = 1
+         for text, expr, index in string.gmatch(line, "(.-)$(%b())()") do 
+            last = index
+            if text ~= "" then
+               table.insert(chunk, string.format('io.write %q ', text))
+            end
+            table.insert(chunk, string.format('io.write%s ', expr))
+         end
+         table.insert(chunk, string.format('io.write %q\n', string.sub(line, last).."\n"))
+      end
+   end
+   return load(table.concat(chunk))()
+end
+
+next_is_line_match = false;
+g_line_match = "#";
+for index,argument in ipairs(arg) do
+   if (next_is_line_match) then
+      g_line_match = argument;
+      next_is_line_match = false;
+   elseif (argument == '-l') then
+      next_is_line_match = true;
+   else
+      prep(argument, g_line_match);
+   end
+end
