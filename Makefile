@@ -3,9 +3,9 @@ README.md: README.pp
 	./src/prepro -l \~ README.tmp > README.md
 
 clean:
-	rm README.md
-	rm toc.tmp
-	rm README.tmp
-	rm *~
+	rm -f README.md
+	rm -f toc.tmp
+	rm -f README.tmp
+	rm -f *~
 
 .PHONY: clean
