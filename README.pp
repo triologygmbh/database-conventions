@@ -43,6 +43,13 @@ Dieses Tabellenkürzel _muss_ in den Kommentar zur Tabelle wie folgt aufgenommen
   comment on table employee is 'abbrev=emp; ...';
   ```
 
+Alternativ:
+
+  ```sql
+  comment on table employee is '...; abbrev=emp';
+  ```
+
+
 _Warum?_ Dies ermöglicht unter Anderem die automatische Zuordnung einer Sequenz zu einer Tabelle.
 
 
@@ -58,6 +65,11 @@ Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen w
   comment on column employee.last_name is 'abbrev=empnam; ...';
   ```
 
+Alternativ:
+
+  ```sql
+  comment on column employee.last_name is '...; abbrev=empnam';
+  ```
 
 ~ topic("Generelle Namenskonventionen")
 ~ rule()
