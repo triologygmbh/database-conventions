@@ -87,10 +87,10 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Tabellen | \<FachlicherName\> | employee |
-| Journal-Tabellen | \<FachlicherName\>_JN | employee_jn,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals._ |
+| Journal-Tabellen | \<FachlicherName\>_JN | employee_jn,<br />_Es existiert ebenso die Tabelle \<FachlicherName\> als Grundlage der Journals._ |
 | Logging-Tabellen | \<FachlicherName\>_LOG | import_log |
-| DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
-| Backups/Kopien | \<FachlicherName\>_BAK| debitor_bak,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Ursprung der Kopie._ |
+| DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle \<FachlicherName\> als Grundlage betreffender DML-Statements._ |
+| Backups/Kopien | \<FachlicherName\>_BAK| debitor_bak,<br />_Es existiert ebenso die Tabelle \<FachlicherName\> als Ursprung der Kopie._ |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Views
@@ -187,7 +187,7 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Technische Schlüsselspalte | id | employee.id |
-| Fremdschlüsselspalte | \<TabellenKürzel\>_id,<br />\<TabellenKürzel\>_\<Qualifikation\>_id | employee.dep_id<br />_\<TabellenKürzel\> der referenzierten Tabelle<br />\<Qualifikation\> bei mehreren Referenzen._ |
+| Fremdschlüsselspalte | \<TabellenKürzel\>\_id,<br />\<TabellenKürzel\>_\<Qualifikation\>_id | employee.dep_id<br />_\<TabellenKürzel\> der referenzierten Tabelle<br />\<Qualifikation\> bei mehreren Referenzen._ |
 | Auditing-Spalte,<br />Erstellungsdatum | created_date | employee.created_date |
 | Auditing-Spalte,<br />Änderungsdatum | modified_date | employee.modified_date |
 | Weitere Spalten | nicht 'id', enden nicht auf '_id', keine Auditing-Spalte | employee.last_name |
