@@ -169,11 +169,11 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
-| Technische Schlüsselspalte | id | employee.id |
-| Fremdschlüsselspalte | \<TabellenKürzel\>\_id,<br />\<TabellenKürzel\>_\<Qualifikation\>_id | employee.dep_id<br />_\<TabellenKürzel\> der referenzierten Tabelle<br />\<Qualifikation\> bei mehreren Referenzen._ |
+| Technische Schlüsselspalte | ID | employee.id |
+| Fremdschlüsselspalte | \<TabellenKürzel\>\_ID,<br />\<TabellenKürzel\>\_\<Qualifikation\>\_ID | employee.dep_id<br />_\<TabellenKürzel\> der referenzierten Tabelle<br />\<Qualifikation\> bei mehreren Referenzen._ |
 | Auditing-Spalte,<br />Erstellungsdatum | created_date | employee.created_date |
 | Auditing-Spalte,<br />Änderungsdatum | modified_date | employee.modified_date |
-| Weitere Spalten | nicht 'id', enden nicht auf '_id', keine Auditing-Spalte | employee.last_name |
+| Weitere Spalten | nicht 'ID', enden nicht auf '_ID', keine Auditing-Spalte | employee.last_name |
 
 ~ subtopic ("Technischer Schlüssel")
 ~ rule()
@@ -226,16 +226,15 @@ Auditing-Spalten sind i.d.R. vom Typ Date.
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
-| Primary Key Constraint | \<TabellenKürzel\>_PK | emp_pk |
-| Unique Constraint | \<TabellenKürzel\>_\<Qualifikation\>_UK | emp_username_uk,<br />_Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
-| Foreign Key Constraint | \<TabellenKürzel\> _\<TabellenKürzel\> _FK,<br />\<TabellenKürzel\> _\<TabellenKürzel\> _\<Qualifikation\> _FK| emp_dep_fk,<br />_Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
-| Check Constraint | \<TabellenKürzel\>_\<Qualifikation\>_CK | emp_manager_ck,<br />_... constraint emp_manager_ck check (manager in (0,1))<br />Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
+| Primary Key Constraint | \<TabellenKürzel\>\_PK | emp_pk |
+| Unique Constraint | \<TabellenKürzel\>\_\<Qualifikation\>\_UK | emp_username_uk,<br />_Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
+| Foreign Key Constraint | \<TabellenKürzel\>\_\<TabellenKürzel\>\_FK,<br />\<TabellenKürzel\>\_\<TabellenKürzel\>\_\<Qualifikation\>\_FK| emp_dep_fk,<br />_Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
+| Check Constraint | \<TabellenKürzel\>\_\<Qualifikation\>\_CK | emp_manager_ck,<br />_... constraint emp_manager_ck check (manager in (0,1))<br />Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
 | Not Null Constraint | - (kein Name notwendig) | |
 
 
 ~ subtopic("Not Null Constraints")
 ~ rule()
-
 Not Null constraints werden nicht namentlich ausgewiesen, da:
 
 1. änderbar via
@@ -252,7 +251,7 @@ Not Null constraints werden nicht namentlich ausgewiesen, da:
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
-| Index | \<TabellenKürzel\>_\<Qualifikation\>_IX | emp_id_ix,<br />_Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
+| Index | \<TabellenKürzel\>\_\<Qualifikation\>\_IX | emp_id_ix,<br />_Bsp. für \<Qualifikation\>: Spaltenname, Spaltenkürzel (ggf. mehrere), fachlicher Aspekt._ |
 
 
 
