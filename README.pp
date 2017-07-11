@@ -5,11 +5,10 @@
 ~ language = "de";
 
 
-# DB Namenskonventionen
+# Design- und Namenskonventionen für Datenbanken
 
 
 ## Inhaltsverzeichnis
-
 
 ~ -- deferred inclusion of toc for second pass...
 ~ io.write("~ incl('toc.tmp')")
@@ -78,41 +77,39 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Journal-Tabellen | \<FachlicherName\>_JN | employee_jn,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals._ |
 | Logging-Tabellen | \<FachlicherName\>_LOG | import_log |
 | DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
-
+| Backups/Kopien | \<FachlicherName\>_BAK| debitor_bak,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
 
 ~ topic("Views")
-~ rule()
 
+~ rule()
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | View | \<FachlicherName\>_V | employee_v,<br />_\<FachlicherName\> darf ebenso ein Tabellenname sein, muss aber nicht._ |
 
 
 ~ rule()
-
 Views werden nicht geschachtelt.
 
 _Warum?_ ineinander geschachtelte Views führen früher oder später zu Performance-Problemen.
 
 ~ rule()
-
-Views sind als Teil einer Zugriffsschicht verboten.
+Views sind als Teil einer Applikationszugriffsschicht verboten.
 
 ~ rule()
-
 Views sind erlaubt:
 - als Hilfsmittel/Komfort für Entwickler oder DBA.
 - zum Verbergen von Komplexität vor Fremdsystemen.
 
+
 ~ topic("Trigger")
 
+~ rule()
 Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
 - Sequenz-Trigger dienen der Befüllung der Technischen Schlüsselspalte id (before row insert).
 - Auditing-Trigger dienen der Befüllung der Auditing-Spalten (before row insert/update).
 - Journalling-Trigger dienen der Befüllung von Journal-Tabellen (after row insert/update/delete).
 
 ~ rule()
-
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Sequenz-Trigger | \<TabellenKürzel\>_SEQ_TG | emp_seq_tg |
@@ -120,15 +117,12 @@ Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
 | Auditing-Trigger | \<TabellenKürzel\>_AUD_TG | emp_aud_tg |
 
 ~ rule()
-
 Die Erstellung weiterer Trigger ist verboten.
 
 ~ rule()
-
 Als Alternative zu Triggern is eine geeignete Zugriffsschicht zu implementieren.
 
 ~ rule()
-
 Alles-oder-Nichts-Prinzip:
 
 - Wenn es eine Technische Schlüsselspalte gibt, die aus einem Sequenz-Trigger befüllt wird, dann gilt dies für alle Technischen Schlüsselspalten.
@@ -136,7 +130,6 @@ Alles-oder-Nichts-Prinzip:
 - Wenn es eine Journal-Tabelle gibt, die über einen Journalling-Trigger befüllt wird, dann gilt dies für alle Journal-Tabellen.
 
 ~ rule ()
-
 Sämtliche Trigger sind automatisiert, z.B. aus einem Template zu erstellen.
 
 
@@ -184,14 +177,12 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 ~ subtopic ("Technischer Schlüssel")
 ~ rule()
-
 Jede Tabelle verfügt über einen technischen Primärschlüssel.
 Die Tabelle wird ausschliesslich über diesen Primärschlüssel referenziert.
 
 _Warum?_ Fachliche Schlüssel, die sich durchaus ändern können, sind von der Aufgabe der referentiellen Integrität entkoppelt.
 
 ~ rule()
-
 Die technische Schlüsselspalte heisst immer id.
 Joins sind somit immer über die id-Spalte aufzubauen, nicht über fachliche Schlüssel, die sich ändern können.
 
@@ -212,26 +203,19 @@ Die technische Schlüsselspalte ist vom Typ NUMBER(18,0)
 _Warum?_ Damit passt die id bequem in gängige Datentypen, 64bit signed integer (Java: long, C: int64_t/signed long long).
 
 ~ rule()
-
-Für Oracle 11g: Die technische Schlüsselspalte wird immer von einer Sequenz befüllt.
+Die technische Schlüsselspalte wird immer von einer Sequenz befüllt.
 Dies passiert bevorzugt in einer Zugriffsschicht.
 
 
 ~ subtopic ("Auditing-Spalten")
 ~ rule()
-
-Auditing-Spalten sind für alle Tabellen verbindlich.
-
-~ rule()
-
-Die Auditing-Spalten sind, wenn vorhanden, verbindlich zu pflegen.
+Auditing-Spalten sind für alle Tabellen verbindlich und ebenso verbindlich zu pflegen.
+Dies passiert bevorzugt in einer Zugriffsschicht.
 
 ~ rule()
-
 Auditing-Spalten sind nicht nullable, d.h. die Erstanlage zählt als Modifikation.
 
 ~ rule()
-
 Auditing-Spalten sind i.d.R. vom Typ Date.
 
 
@@ -272,46 +256,47 @@ Not Null constraints werden nicht namentlich ausgewiesen, da:
 
 
 
+~ topic("Functions, Procedures, Types, Packages")
+~ rule()
+Functions, Procedures und Types _sollten_ bevorzugt in Packages abgelegt werden.
+
+~ rule()
+Functions, Procedures, Types und Packages _können_ mit einem Projektpräfix versehen werden.
 
 
 
 
 
+~ topic("Synonyme")
+~ rule()
+Synonyme sind in einem Owner-Schema verboten.
 
+~ rule()
+Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift ("Access-Schema").
 
-~ topic ("Nicht aufgeführte Objekt-Typen")
-~ subtopic("Synonyme")
+Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung des Zugriffsschemas.
 
-Synonyme sind im einem Applikationsschema verboten.
-
-Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift.
-
-Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung.
 
 ~ subtopic("Öffentliche Synonyme")
-
+~ rule()
 Öffentliche Synonyme sind verboten.
 
-~ subtopic("DBMS Jobs/Scheduler Jobs")
 
-DBMS Jobs sind verboten.
 
-Es sind Scheduler Jobs zu verwenden.
 
-Diese sind noch nicht Teil dieses Dokumentes.
 
-Es sind nur Scheduler Jobs mit dem Job-Typ "STORED_PROCEDURE" erlaubt.
+~ topic("Jobs")
+
+~ rule()
+DBMS Jobs sind verboten. Es sind Scheduler Jobs zu verwenden.
+
+_Warum?_ DBMS Jobs wurden durch Scheduler Jobs abgelöst.
+
+~ rule()
+Scheduler Jobs sind bevorzugt mit dem Job-Typ "STORED_PROCEDURE" anzulegen.
 
 _Warum?_ für eine stored procedure ist sichergestellt, dass diese kompiliert. Das gilt nicht für Anonyme PL/SQL-Blöcke.
 
-~ subtopic("Advanced Queueing")
 
-Erlaubt, aber noch nicht Teil dieses Dokumentes.
-
-~ subtopic("Functions, Procedures, Packages und Package Bodies")
-
-Erlaubt, aber noch nicht Teil dieses Dokumentes.
-
-Functions und Procedures _sollten_ bevorzugt in Packages abgelegt werden.
 
 ~ dumptoc ()

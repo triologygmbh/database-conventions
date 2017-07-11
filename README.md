@@ -1,11 +1,10 @@
 
 
 
-# DB Namenskonventionen
+# Design- und Namenskonventionen für Datenbanken
 
 
 ## Inhaltsverzeichnis
-
 
   1. [Sprache](#sprache)
   1. [Projektpräfix](#projektpräfix)
@@ -19,7 +18,9 @@
   1. [Spalten](#spalten)
   1. [Constraints](#constraints)
   1. [Indizes](#indizes)
-  1. [Nicht aufgeführte Objekt-Typen](#nicht-aufgeführte-objekt-typen)
+  1. [Functions, Procedures, Types, Packages](#functions,-procedures,-types,-packages)
+  1. [Synonyme](#synonyme)
+  1. [Jobs](#jobs)
 ## Sprache
 ###### [Regel [R001](#regel-r001)]
 
@@ -89,67 +90,61 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Journal-Tabellen | \<FachlicherName\>_JN | employee_jn,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals._ |
 | Logging-Tabellen | \<FachlicherName\>_LOG | import_log |
 | DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
-
+| Backups/Kopien | \<FachlicherName\>_BAK| debitor_bak,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Views
-###### [Regel [R007](#regel-r007)]
 
+###### [Regel [R007](#regel-r007)]
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | View | \<FachlicherName\>_V | employee_v,<br />_\<FachlicherName\> darf ebenso ein Tabellenname sein, muss aber nicht._ |
 
 
 ###### [Regel [R008](#regel-r008)]
-
 Views werden nicht geschachtelt.
 
 _Warum?_ ineinander geschachtelte Views führen früher oder später zu Performance-Problemen.
 
 ###### [Regel [R009](#regel-r009)]
-
-Views sind als Teil einer Zugriffsschicht verboten.
+Views sind als Teil einer Applikationszugriffsschicht verboten.
 
 ###### [Regel [R010](#regel-r010)]
-
 Views sind erlaubt:
 - als Hilfsmittel/Komfort für Entwickler oder DBA.
 - zum Verbergen von Komplexität vor Fremdsystemen.
 
+
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Trigger
 
+###### [Regel [R011](#regel-r011)]
 Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
 - Sequenz-Trigger dienen der Befüllung der Technischen Schlüsselspalte id (before row insert).
 - Auditing-Trigger dienen der Befüllung der Auditing-Spalten (before row insert/update).
 - Journalling-Trigger dienen der Befüllung von Journal-Tabellen (after row insert/update/delete).
 
-###### [Regel [R011](#regel-r011)]
-
+###### [Regel [R012](#regel-r012)]
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Sequenz-Trigger | \<TabellenKürzel\>_SEQ_TG | emp_seq_tg |
 | Journalling-Trigger | \<TabellenKürzel\>_JN_TG | emp_jn_tg |
 | Auditing-Trigger | \<TabellenKürzel\>_AUD_TG | emp_aud_tg |
 
-###### [Regel [R012](#regel-r012)]
-
+###### [Regel [R013](#regel-r013)]
 Die Erstellung weiterer Trigger ist verboten.
 
-###### [Regel [R013](#regel-r013)]
-
+###### [Regel [R014](#regel-r014)]
 Als Alternative zu Triggern is eine geeignete Zugriffsschicht zu implementieren.
 
-###### [Regel [R014](#regel-r014)]
-
+###### [Regel [R015](#regel-r015)]
 Alles-oder-Nichts-Prinzip:
 
 - Wenn es eine Technische Schlüsselspalte gibt, die aus einem Sequenz-Trigger befüllt wird, dann gilt dies für alle Technischen Schlüsselspalten.
 - Wenn es einen Auditing-Trigger gibt, der Auditing-Spalten befüllt, so werden alle Auditing-Spalten über einen Auditing-Trigger befüllt.
 - Wenn es eine Journal-Tabelle gibt, die über einen Journalling-Trigger befüllt wird, dann gilt dies für alle Journal-Tabellen.
 
-###### [Regel [R015](#regel-r015)]
-
+###### [Regel [R016](#regel-r016)]
 Sämtliche Trigger sind automatisiert, z.B. aus einem Template zu erstellen.
 
 
@@ -159,22 +154,22 @@ Sämtliche Trigger sind automatisiert, z.B. aus einem Template zu erstellen.
 Dieser Abschnitt gilt für Sequenzen, die zur Befüllung der technischen Schlüsselspalte dienen.
 Weitere Sequenzen sind prinzipiell erlaubt, aufgrund ihrer Seltenheit hier jedoch nicht erfasst.
 
-###### [Regel [R016](#regel-r016)]
+###### [Regel [R017](#regel-r017)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
 | Sequenz | <TabellenKürzel>_SEQ | emp_seq,<br />_Für Spalte id der Tabelle mit dem betreffenden \<TabellenKürzel\>._ |
 
-###### [Regel [R017](#regel-r017)]
+###### [Regel [R018](#regel-r018)]
 
 Sequenzen starten immer bei 1.
 
-###### [Regel [R018](#regel-r018)]
+###### [Regel [R019](#regel-r019)]
 
 Tabellen, die über bulk-inserts befüllt werden, dürfen cachende Sequenzen verwenden.
 
 
-###### [Regel [R019](#regel-r019)]
+###### [Regel [R020](#regel-r020)]
 
 Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der Tabelle mit dem Kürzel _emp_:
 
@@ -187,7 +182,7 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ## Spalten
 
-###### [Regel [R020](#regel-r020)]
+###### [Regel [R021](#regel-r021)]
 
 | Objekt-Typ | Regel | Beispiel |
 |:---|:---|:---|
@@ -199,24 +194,22 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Technischer Schlüssel
-###### [Regel [R021](#regel-r021)]
-
+###### [Regel [R022](#regel-r022)]
 Jede Tabelle verfügt über einen technischen Primärschlüssel.
 Die Tabelle wird ausschliesslich über diesen Primärschlüssel referenziert.
 
 _Warum?_ Fachliche Schlüssel, die sich durchaus ändern können, sind von der Aufgabe der referentiellen Integrität entkoppelt.
 
-###### [Regel [R022](#regel-r022)]
-
+###### [Regel [R023](#regel-r023)]
 Die technische Schlüsselspalte heisst immer id.
 Joins sind somit immer über die id-Spalte aufzubauen, nicht über fachliche Schlüssel, die sich ändern können.
 
-###### [Regel [R023](#regel-r023)]
+###### [Regel [R024](#regel-r024)]
 Die technische Schlüsselspalte ist nicht nullable.
 
 _Warum?_ Datensätze sind so immer referenzierbar.
 
-###### [Regel [R024](#regel-r024)]
+###### [Regel [R025](#regel-r025)]
 Die technische Schlüsselspalte ist vom Typ NUMBER(18,0)
 
   ```
@@ -227,28 +220,21 @@ Die technische Schlüsselspalte ist vom Typ NUMBER(18,0)
 
 _Warum?_ Damit passt die id bequem in gängige Datentypen, 64bit signed integer (Java: long, C: int64_t/signed long long).
 
-###### [Regel [R025](#regel-r025)]
-
-Für Oracle 11g: Die technische Schlüsselspalte wird immer von einer Sequenz befüllt.
+###### [Regel [R026](#regel-r026)]
+Die technische Schlüsselspalte wird immer von einer Sequenz befüllt.
 Dies passiert bevorzugt in einer Zugriffsschicht.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Auditing-Spalten
-###### [Regel [R026](#regel-r026)]
-
-Auditing-Spalten sind für alle Tabellen verbindlich.
-
 ###### [Regel [R027](#regel-r027)]
-
-Die Auditing-Spalten sind, wenn vorhanden, verbindlich zu pflegen.
+Auditing-Spalten sind für alle Tabellen verbindlich und ebenso verbindlich zu pflegen.
+Dies passiert bevorzugt in einer Zugriffsschicht.
 
 ###### [Regel [R028](#regel-r028)]
-
 Auditing-Spalten sind nicht nullable, d.h. die Erstanlage zählt als Modifikation.
 
 ###### [Regel [R029](#regel-r029)]
-
 Auditing-Spalten sind i.d.R. vom Typ Date.
 
 
@@ -292,50 +278,50 @@ Not Null constraints werden nicht namentlich ausgewiesen, da:
 
 
 
+**[Zurück nach oben](#inhaltsverzeichnis)**
+## Functions, Procedures, Types, Packages
+###### [Regel [R033](#regel-r033)]
+Functions, Procedures und Types _sollten_ bevorzugt in Packages abgelegt werden.
 
-
+###### [Regel [R034](#regel-r034)]
+Functions, Procedures, Types und Packages _können_ mit einem Projektpräfix versehen werden.
 
 
 
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
-## Nicht aufgeführte Objekt-Typen
-### Synonyme
+## Synonyme
+###### [Regel [R035](#regel-r035)]
+Synonyme sind in einem Owner-Schema verboten.
 
-Synonyme sind im einem Applikationsschema verboten.
+###### [Regel [R036](#regel-r036)]
+Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift ("Access-Schema").
 
-Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift.
+Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung des Zugriffsschemas.
 
-Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung.
 
 **[Zurück nach oben](#inhaltsverzeichnis)**
 ### Öffentliche Synonyme
-
+###### [Regel [R037](#regel-r037)]
 Öffentliche Synonyme sind verboten.
 
+
+
+
+
 **[Zurück nach oben](#inhaltsverzeichnis)**
-### DBMS Jobs/Scheduler Jobs
+## Jobs
 
-DBMS Jobs sind verboten.
+###### [Regel [R038](#regel-r038)]
+DBMS Jobs sind verboten. Es sind Scheduler Jobs zu verwenden.
 
-Es sind Scheduler Jobs zu verwenden.
+_Warum?_ DBMS Jobs wurden durch Scheduler Jobs abgelöst.
 
-Diese sind noch nicht Teil dieses Dokumentes.
-
-Es sind nur Scheduler Jobs mit dem Job-Typ "STORED_PROCEDURE" erlaubt.
+###### [Regel [R039](#regel-r039)]
+Scheduler Jobs sind bevorzugt mit dem Job-Typ "STORED_PROCEDURE" anzulegen.
 
 _Warum?_ für eine stored procedure ist sichergestellt, dass diese kompiliert. Das gilt nicht für Anonyme PL/SQL-Blöcke.
 
-**[Zurück nach oben](#inhaltsverzeichnis)**
-### Advanced Queueing
 
-Erlaubt, aber noch nicht Teil dieses Dokumentes.
-
-**[Zurück nach oben](#inhaltsverzeichnis)**
-### Functions, Procedures, Packages und Package Bodies
-
-Erlaubt, aber noch nicht Teil dieses Dokumentes.
-
-Functions und Procedures _sollten_ bevorzugt in Packages abgelegt werden.
 
