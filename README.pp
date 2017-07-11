@@ -77,7 +77,7 @@ Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 | Journal-Tabellen | \<FachlicherName\>_JN | employee_jn,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage der Journals._ |
 | Logging-Tabellen | \<FachlicherName\>_LOG | import_log |
 | DML-Error-Logging-Tabellen | \<FachlicherName\>_ERR| debitor_err,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
-| Backups/Kopien | \<FachlicherName\>_BAK| debitor_bak,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Grundlage betreffender DML-Statements._ |
+| Backups/Kopien | \<FachlicherName\>_BAK| debitor_bak,<br />_Es existiert ebenso die Tabelle <FachlicherName> als Ursprung der Kopie._ |
 
 ~ topic("Views")
 
@@ -98,8 +98,8 @@ Views sind als Teil einer Applikationszugriffsschicht verboten.
 ~ rule()
 Views sind erlaubt:
 - als Hilfsmittel/Komfort für Entwickler oder DBA.
-- zum Verbergen von Komplexität vor Fremdsystemen.
-
+- zum Verbergen von Komplexität (Denormalisierung) vor Fremdsystemen.
+- zum Verbergen von Informationen in Zeilen oder Spalten (Information Hiding) vor Fremdsystemen.
 
 ~ topic("Trigger")
 
