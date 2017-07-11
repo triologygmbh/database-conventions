@@ -183,8 +183,8 @@ Beispiel einer nicht-cachenden Sequenz für die Befüllung der Spalte _id_ der T
 |:---|:---|:---|
 | Technische Schlüsselspalte | ID | employee.id |
 | Fremdschlüsselspalte | \<TabellenKürzel\>\_ID,<br />\<TabellenKürzel\>\_\<Qualifikation\>\_ID | employee.dep_id<br />_\<TabellenKürzel\> der referenzierten Tabelle<br />\<Qualifikation\> bei mehreren Referenzen._ |
-| Auditing-Spalte,<br />Erstellungsdatum | created_date | employee.created_date |
-| Auditing-Spalte,<br />Änderungsdatum | modified_date | employee.modified_date |
+| Auditing-Spalte,<br />Erstellungsdatum | CREATED_DATE | employee.created_date |
+| Auditing-Spalte,<br />Änderungsdatum | MODIFIED_DATE | employee.modified_date |
 | Weitere Spalten | nicht 'ID', enden nicht auf '_ID', keine Auditing-Spalte | employee.last_name |
 
 ~ subtopic ("Technischer Schlüssel")
