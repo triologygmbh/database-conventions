@@ -21,8 +21,8 @@ Als Sprache für die Benennung der Schema-Objekte ist Englisch zu wählen.
 Die Sprache für Quelltext- und Dokumentationskommentare kann unabhängig gewählt werden.
 
 ~ topic ("Projektpräfix")
-~ rule()
 
+~ rule()
 Es _kann_ ein Projektpräfix vereinbart werden.
 Diese Präfixe werden, gefolgt von einem Unterstrich '_', jedem Tabellen- oder Viewnamen vorangestellt.
 Ein Präfix besteht aus maximal 3 alphanumerischen Zeichen, beginnend mit einem Buchstaben.
@@ -32,8 +32,8 @@ eingebettetem SQL oder im Quelltext verteilten SQL (JDBC). Alternativ kann mitun
 
 
 ~ topic ("Tabellenkürzel")
-~ rule()
 
+~ rule()
 Für jede Tabelle _muss_ ein eindeutiges Tabellenkürzel vereinbart werden.
 Alle Tabellenkürzel und Tabellennamen sind innerhalb ihres Schemas eindeutig.
 Ein Tabellenkürzel besteht aus bis zu 5 alphanumerischen Zeichen, beginnend mit einem Buchstaben.
@@ -58,7 +58,7 @@ _Warum?_ Dies ermöglicht unter Anderem die automatische Zuordnung einer Sequenz
 
 
 Für jede Spalte _kann_ ein eindeutiges Spaltenkürzel vereinbart werden.
-Ein Spaltekürzel besteht aus bis zu 6 alphanumerischen Zeichen, beginnend mit einem Buchstaben.
+Ein Spaltenkürzel besteht aus bis zu 6 alphanumerischen Zeichen, beginnend mit einem Buchstaben.
 Dieses Spaltenkürzel _kann_ in den Kommentar zur Spalte wie folgt aufgenommen werden.
 
   ```sql
@@ -77,7 +77,7 @@ Alternativ:
 Alle Namen bestehen nur aus den Buchstaben 'A'-'Z', den Zahlen '0'-'9', sowie dem Unterstrich '_'.
 Alle Namen beginnen mit einem Buchstaben.
 Alle Namen sind höchstens 30 Zeichen lang.
-Objecte sind immer case-insensitiv anzulegen.
+Objekte sind immer case-insensitiv anzulegen.
 Namen entsprechen nicht den reservierten Wörtern oder Schlüsselwörtern.
 
 ~ topic("Tabellen")
@@ -117,7 +117,7 @@ Views sind erlaubt:
 
 ~ rule()
 Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
-- Sequenz-Trigger dienen der Befüllung der Technischen Schlüsselspalte id (before row insert).
+- Sequenz-Trigger dienen der Befüllung der technischen Schlüsselspalte id (before row insert).
 - Auditing-Trigger dienen der Befüllung der Auditing-Spalten (before row insert/update).
 - Journalling-Trigger dienen der Befüllung von Journal-Tabellen (after row insert/update/delete).
 
@@ -137,7 +137,7 @@ Als Alternative zu Triggern is eine geeignete Zugriffsschicht zu implementieren.
 ~ rule()
 Alles-oder-Nichts-Prinzip:
 
-- Wenn es eine Technische Schlüsselspalte gibt, die aus einem Sequenz-Trigger befüllt wird, dann gilt dies für alle Technischen Schlüsselspalten.
+- Wenn es eine technische Schlüsselspalte gibt, die aus einem Sequenz-Trigger befüllt wird, dann gilt dies für alle technischen Schlüsselspalten.
 - Wenn es einen Auditing-Trigger gibt, der Auditing-Spalten befüllt, so werden alle Auditing-Spalten über einen Auditing-Trigger befüllt.
 - Wenn es eine Journal-Tabelle gibt, die über einen Journalling-Trigger befüllt wird, dann gilt dies für alle Journal-Tabellen.
 
@@ -285,7 +285,7 @@ Synonyme sind in einem Owner-Schema verboten.
 ~ rule()
 Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift ("Access-Schema").
 
-Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung des Zugriffsschemas.
+Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung des Access-Schemas.
 
 
 ~ subtopic("Öffentliche Synonyme")
