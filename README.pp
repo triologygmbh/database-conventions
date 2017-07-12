@@ -283,7 +283,7 @@ Functions, Procedures, Types und Packages _können_ mit einem Projektpräfix ver
 Synonyme sind in einem Owner-Schema verboten.
 
 ~ rule()
-Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Applikationsschema zugreift ("Access-Schema").
+Synonyme sind nur in einem Schema erlaubt, über die ein Fremdsystem auf ein Owner-Schema zugreift ("Access-Schema").
 
 Nachteil: Müssen in diesem Fremdschema gepflegt werden, je nach Betriebskonzept bedeutet dies möglicherweise eine weitere Auslieferung des Access-Schemas.
 
