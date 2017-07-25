@@ -147,7 +147,7 @@ Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
 Die Erstellung weiterer Trigger ist verboten.
 
 ###### [Regel [R014](#regel-r014)]
-Als Alternative zu Triggern is eine geeignete Zugriffsschicht zu implementieren.
+Als Alternative zu Triggern ist eine geeignete Zugriffsschicht zu implementieren.
 
 ###### [Regel [R015](#regel-r015)]
 Alles-oder-Nichts-Prinzip:
@@ -157,7 +157,7 @@ Alles-oder-Nichts-Prinzip:
 - Wenn es eine Journal-Tabelle gibt, die über einen Journalling-Trigger befüllt wird, dann gilt dies für alle Journal-Tabellen.
 
 ###### [Regel [R016](#regel-r016)]
-Sämtliche Trigger sind automatisiert, z.B. aus einem Template zu erstellen.
+Sämtliche Trigger sind automatisiert, z.B. aus einem Template, zu erstellen.
 
 
 **[Zurück nach oben](#inhaltsverzeichnis)**

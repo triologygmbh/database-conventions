@@ -132,7 +132,7 @@ Es gibt 3 verschiedene Arten von Triggern, die verwendet werden dürfen.
 Die Erstellung weiterer Trigger ist verboten.
 
 ~ rule()
-Als Alternative zu Triggern is eine geeignete Zugriffsschicht zu implementieren.
+Als Alternative zu Triggern ist eine geeignete Zugriffsschicht zu implementieren.
 
 ~ rule()
 Alles-oder-Nichts-Prinzip:
@@ -142,7 +142,7 @@ Alles-oder-Nichts-Prinzip:
 - Wenn es eine Journal-Tabelle gibt, die über einen Journalling-Trigger befüllt wird, dann gilt dies für alle Journal-Tabellen.
 
 ~ rule ()
-Sämtliche Trigger sind automatisiert, z.B. aus einem Template zu erstellen.
+Sämtliche Trigger sind automatisiert, z.B. aus einem Template, zu erstellen.
 
 
 ~ topic("Sequenzen")
