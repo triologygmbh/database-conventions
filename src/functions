@@ -1,0 +1,85 @@
+
+function fwrite(fmt, ...)
+  io.write(string.format(fmt, ...))
+end
+
+
+language = "en";
+
+
+-- keep track of nesting so we can automatically introduce "back to top" links
+-- start with a low nesting in order to supress emitting the first link
+current_nesting = 0;
+
+function nesting(n)
+   if (n <= current_nesting) and (n<6) then
+      if (language == "de") then
+         fwrite([[
+**[Zurück nach oben](#inhaltsverzeichnis)**
+]]);
+      else
+         fwrite([[
+**[Back to top](#table-of-contents)**
+]]);
+      end
+   end
+
+   current_nesting=n;
+end
+
+
+
+-- keep track of all topics, so we can create a toc in a second pass
+topics = {}
+topic_count = 1;
+
+function topic(t)
+   nesting(2);
+
+   topics[topic_count] = t;
+   topic_count = topic_count + 1;
+
+   fwrite([[## %s
+]], t);
+
+end
+
+function subtopic(t)
+   nesting(3);
+
+   fwrite([[### %s
+]], t);
+end
+
+
+
+-- keep track of all rules, in order to correctly enumerate them.
+rule_count = 1;
+
+-- introduce a new rule
+function rule()
+   nesting(6);
+
+   if (language == "de") then
+      fwrite([[###### [Regel [R%03i](#regel-r%03i)]
+]], rule_count, rule_count);
+   else
+      fwrite([[###### [Rule [R%03i](#rule-r%03i)]
+]], rule_count, rule_count);
+   end
+
+   rule_count = rule_count + 1;
+end
+
+
+
+
+
+function dumptoc()
+   fh = io.open("toc.tmp", "w+");
+   for k,v in ipairs (topics) do
+      fh:write(string.format("  1. [%s](#%s)\n", v, string.lower(string.gsub(v, " ", "-" ))));
+   end
+   fh:flush();
+   fh:close();
+end
