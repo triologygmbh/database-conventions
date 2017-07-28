@@ -173,10 +173,10 @@ Example of a non-caching sequence used to populate the column ID of the table us
 ~ subtopic ("Technical Keys")
 ~ rule()
 Every table has a technical primary key. The table is referenced only by this primary key.
-_Why?_ Technical keys, which may well change, are uncoupled from the task of referential integrity.
+_Why?_ Domain keys may be subject to change. This way, they are uncoupled from the task of referential integrity.
 
 ~ rule()
-The technical key column is always named id. Joins must therefore always be created via the id column, not via other keys, which may be subject to change.
+The technical key column is always named id. Joins must therefore always be created via the id column, not via domain keys, which may be subject to change.
 
 
 ~ rule()
