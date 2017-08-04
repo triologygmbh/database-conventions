@@ -281,4 +281,22 @@ Scheduler jobs should preferably be created with the job type "STORED_PROCEDURE"
 _Why?_ a stored procedure is already compiled. This does not apply to anonymous PL/SQL blocks. Thus there can not be any compile time errors.
 
 
+~ topic("Tablespaces")
+~ rule()
+
+| Object Type | Rule | Example |
+|:------------|:-----|:--------|
+| Tablespace | \<DatabaseName\>_TS | SCOTT_TS, no indexes are contained in this tablespace. |
+| Index Tablespace | \<DatabaseName\>_IDX_TS | SCOTT_IDX_TS, there are only indexes residing in this tablespace. |
+
+Indexes should reside in their own separate tablespaces.
+As a consequence there should be at least two tablespaces for a database.
+
+Further tablespaces may be defined and used.
+
+_Why?_ Indexes can be rebuilt completely. They do not contain any valuable data.
+When moving a database (from one host to another, or for backup reasons) at the tablespace level there is no need to move the index tablespaces.
+
+
+
 ~ dumptoc ()

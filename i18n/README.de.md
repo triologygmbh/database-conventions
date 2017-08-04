@@ -21,6 +21,7 @@
   1. [Functions, Procedures, Types, Packages](#functions,-procedures,-types,-packages)
   1. [Synonyme](#synonyme)
   1. [Jobs](#jobs)
+  1. [Tablespaces](#tablespaces)
 ## Sprache
 ###### [Regel [R001](#regel-r001)]
 
@@ -334,5 +335,24 @@ Scheduler Jobs sind bevorzugt mit dem Job-Typ "STORED_PROCEDURE" anzulegen.
 
 _Warum?_ für eine stored procedure ist sichergestellt, dass diese kompiliert. Das gilt nicht für Anonyme PL/SQL-Blöcke.
 
+
+
+**[Zurück nach oben](#inhaltsverzeichnis)**
+## Tablespaces
+###### [Regel [R040](#regel-r040)]
+
+| Objekt-Typ | Regel | Beispiel |
+|:-----------|:------|:---------|
+| Tablespace | \<DatenbankName\>_TS | MARKETING_TS, dieser Tablespace enthält _keine_ Indizes. |
+| Index Tablespace | \<DatenbankName\>_IDX_TS | MARKETING_IDX_TS, dieser Tablespace enthält _ausschliesslich_ Indizes. |
+
+Indizes sollten in ihrem eigenen Tablespace liegen.
+Folglich sollte mindestens zwei Tablespaces pro Datenbank existieren.
+
+Weitere Tablespaces können existieren.
+
+_Warum?_ Indizes können komplett neu erstellt werden, sie enthalten keine wertvollen Daten.
+Wenn eine Datenbank auf verschoben wird (von einem Host auf einen anderen, oder zu Backup-Zwecken), so muss der Index-Tablespace nicht bewegt werden.
+Es können einfach die Indexe neu aufgebaut werden.
 
 
